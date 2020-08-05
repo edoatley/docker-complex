@@ -10,3 +10,8 @@ after_success:
     - docker build -t eoatley/multi-nginx ./nginx
     - docker build -t eoatley/multi-server ./server
     - docker build -t eoatley/multi-worker ./worker
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    - docker push eoatley/multi-client
+    - docker push eoatley/multi-nginx 
+    - docker push eoatley/multi-server
+    - docker push eoatley/multi-worker
