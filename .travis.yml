@@ -2,16 +2,16 @@ sudo: required
 services:
     - docker
 before_install:
-    - docker build -t eoatley/react-test -f ./client/Dockerfile.dev ./client
+    - docker build -t edoatley/react-test -f ./client/Dockerfile.dev ./client
 script:
-    - docker run -e CI=true eoatley/react-test npm test
+    - docker run -e CI=true edoatley/react-test npm test
 after_success:
-    - docker build -t eoatley/multi-client ./client
-    - docker build -t eoatley/multi-nginx ./nginx
-    - docker build -t eoatley/multi-server ./server
-    - docker build -t eoatley/multi-worker ./worker
+    - docker build -t edoatley/multi-client ./client
+    - docker build -t edoatley/multi-nginx ./nginx
+    - docker build -t edoatley/multi-server ./server
+    - docker build -t edoatley/multi-worker ./worker
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-    - docker push eoatley/multi-client
-    - docker push eoatley/multi-nginx 
-    - docker push eoatley/multi-server
-    - docker push eoatley/multi-worker
+    - docker push edoatley/multi-client
+    - docker push edoatley/multi-nginx
+    - docker push edoatley/multi-server
+    - docker push edoatley/multi-worker
