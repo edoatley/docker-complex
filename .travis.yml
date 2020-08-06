@@ -15,3 +15,17 @@ after_success:
     - docker push edoatley/multi-nginx
     - docker push edoatley/multi-server
     - docker push edoatley/multi-worker
+
+deploy:
+    provider: elasticbeanstalk
+    region: "us-east-1"
+    app: docker-multi
+    env: DockerMulti-env
+    edge: true
+    bucket_name: "elasticbeanstalk-us-east-1-705251932900"
+    bucket_path: "docker-react"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+ 
